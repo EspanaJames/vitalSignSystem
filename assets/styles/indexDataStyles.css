@@ -18,12 +18,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  gap: 1%;
+  gap: 5px;
 }
 #contentBox > p {
   padding: 20px;
   color: #ffffff;
-  font-size: 14px;
   line-height: 22px;
 }
 #contentBox.show {
@@ -36,10 +35,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   height: 30%;
   width: 100%;
+  gap: 5%;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px;
 }
 #vitalsHeader {
   display: flex;
@@ -80,7 +81,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;
   width: 90%;
-  font-size: 18px;
+  font-size: 14px;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 4px;
   padding: 6px 12px;
@@ -132,4 +133,66 @@
   background-color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 1%;
+}
+@media (max-width: 768px) {
+  #contentBox.show {
+    height: 85vh;
+  }
+
+  #vitalSigns {
+    height: auto;
+    gap: 10px;
+    padding: 15px;
+  }
+
+  .vital-sign {
+    width: 100%;
+    font-size: 13px;
+    padding: 6px 8px;
+  }
+
+  #dateTimeContainer {
+    width: 60%;
+  }
+}
+@media (max-width: 480px) {
+  #contentBox {
+    width: 95vw;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+
+  #contentBox.show {
+    height: 90vh;
+  }
+
+  #vitalSigns {
+    height: auto;
+    padding: 10px;
+    gap: 8px;
+  }
+
+  .vital-sign {
+    grid-template-columns: 1fr;
+    text-align: center;
+    font-size: 12px;
+    padding: 8px;
+    gap: 4px;
+  }
+
+  .vital-sign div {
+    text-align: center !important;
+  }
+
+  #dateTimeContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 70%;
+    font-size: 12px;
+  }
+
+  #exitButton img {
+    width: 16px;
+    height: 16px;
+  }
 }
