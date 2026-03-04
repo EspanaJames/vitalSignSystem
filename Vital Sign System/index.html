@@ -26,17 +26,60 @@
         </h4>
       </div>
       <div id="actionButtons">
-        <button>
+        <button id="scanButton">
           <img src="./assets/images/scanQRImage.png" alt="scan" /><span
             >SCAN YOUR QR CODE</span
           >
         </button>
-        <button>
+        <button id="uploadButton">
           <img src="./assets/images/uploadQRImage.png" alt="upload" /><span
             >UPLOAD QR CODE</span
           >
         </button>
       </div>
+      <div id="contentBox">
+        <div id="dateAndTime">
+          <p id="date">DATE:</p>
+          <p id="time">TIME:</p>
+          <div></div>
+          <button>X</button>
+        </div>
+
+        <div id="vitalSigns">
+          <div class="vital-sign" id="heartRate">
+            <div>sample</div>
+            <div>89bps</div>
+            <div>HEART RATE</div>
+          </div>
+          <div class="vital-sign" id="bloodOxygen">
+            <div>sample</div>
+            <div>98%</div>
+            <div>BLOOD OXYGEN</div>
+          </div>
+          <div class="vital-sign" id="bodyTemperature">
+            <div>sample</div>
+            <div>98.6°F</div>
+            <div>BODY TEMPERATURE</div>
+          </div>
+        </div>
+        <div id="qrCount"></div>
+        <div id="vitalAnalysis"></div>
+      </div>
     </main>
+    <script>
+      const mainContent = document.getElementById("mainContent");
+      const scanBtn = document.getElementById("scanButton");
+      const uploadBtn = document.getElementById("uploadButton");
+      const contentBox = document.getElementById("contentBox");
+
+      function activateUI() {
+        setTimeout(() => {
+          contentBox.classList.add("show");
+        }, 300);
+      }
+
+      scanBtn.addEventListener("click", activateUI);
+      uploadBtn.addEventListener("click", activateUI);
+    </script>
   </body>
 </html>
