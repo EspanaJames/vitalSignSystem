@@ -6,6 +6,7 @@
     <meta name="author" content="James España" />
     <title>Vital Sign System</title>
     <link rel="stylesheet" href="./assets/styles/indexBaseStyles.css" />
+    <link rel="stylesheet" href="./assets/styles/indexDataStyles.css" />
     <link rel="icon" type="image/x-icon" href="./assets/images/pulse.png" />
   </head>
   <body>
@@ -27,22 +28,23 @@
       </div>
       <div id="actionButtons">
         <button id="scanButton">
-          <img src="./assets/images/scanQRImage.png" alt="scan" /><span
-            >SCAN YOUR QR CODE</span
-          >
+          <img src="./assets/images/scanQRImage.png" alt="scan" />
+          <span>SCAN YOUR QR CODE</span>
         </button>
         <button id="uploadButton">
-          <img src="./assets/images/uploadQRImage.png" alt="upload" /><span
-            >UPLOAD QR CODE</span
-          >
+          <img src="./assets/images/uploadQRImage.png" alt="upload" />
+          <span>UPLOAD QR CODE</span>
         </button>
       </div>
       <div id="contentBox">
-        <div id="dateAndTime">
-          <p id="date">DATE:</p>
-          <p id="time">TIME:</p>
-          <div></div>
-          <button>X</button>
+        <div id="vitalsHeader">
+          <div id="dateTimeContainer">
+            <p id="date">DATE:</p>
+            <p id="time">TIME:</p>
+          </div>
+          <button id="exitButton">
+            <img src="./assets/images/remove.png" alt="" />
+          </button>
         </div>
 
         <div id="vitalSigns">
@@ -56,30 +58,22 @@
             <div>98%</div>
             <div>BLOOD OXYGEN</div>
           </div>
+          <div class="vital-sign" id="bloodPressure">
+            <div>sample</div>
+            <div>98.6°F</div>
+            <div>BLOOD PRESSURE</div>
+          </div>
           <div class="vital-sign" id="bodyTemperature">
             <div>sample</div>
             <div>98.6°F</div>
-            <div>BODY TEMPERATURE</div>
+            <div>TEMPERATURE</div>
           </div>
         </div>
         <div id="qrCount"></div>
         <div id="vitalAnalysis"></div>
       </div>
     </main>
-    <script>
-      const mainContent = document.getElementById("mainContent");
-      const scanBtn = document.getElementById("scanButton");
-      const uploadBtn = document.getElementById("uploadButton");
-      const contentBox = document.getElementById("contentBox");
-
-      function activateUI() {
-        setTimeout(() => {
-          contentBox.classList.add("show");
-        }, 300);
-      }
-
-      scanBtn.addEventListener("click", activateUI);
-      uploadBtn.addEventListener("click", activateUI);
-    </script>
+    <script src="./src/functions/showDataBox.js"></script>
+    <script src="./src/functions/exitDataBox.js"></script>
   </body>
 </html>
