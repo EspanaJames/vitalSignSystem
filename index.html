@@ -41,6 +41,15 @@
           <img src="./assets/images/uploadQRImage.png" alt="upload" />
           <span>UPLOAD QR CODE</span>
         </button>
+
+        <input
+          type="file"
+          id="qrImageInput"
+          accept="image/*"
+          style="display: none"
+        />
+
+        <canvas id="qrCanvas" style="display: none"></canvas>
       </div>
       <div id="contentBox">
         <div id="vitalsHeader">
@@ -56,22 +65,22 @@
         <div id="vitalSigns">
           <div class="vital-sign" id="heartRate">
             <div>sample</div>
-            <div>89bps</div>
+            <div id="heartRateValue">0bps</div>
             <div>HEART RATE</div>
           </div>
           <div class="vital-sign" id="bloodOxygen">
             <div>sample</div>
-            <div>98%</div>
+            <div id="bloodOxygenValue">0%</div>
             <div>BLOOD OXYGEN</div>
           </div>
           <div class="vital-sign" id="bloodPressure">
             <div>sample</div>
-            <div>98.6°F</div>
+            <div id="bloodPressureValue">0 mm/Hg</div>
             <div>BLOOD PRESSURE</div>
           </div>
           <div class="vital-sign" id="bodyTemperature">
             <div>sample</div>
-            <div>98.6°F</div>
+            <div id="temperatureValue">0°C</div>
             <div>TEMPERATURE</div>
           </div>
         </div>
@@ -79,7 +88,8 @@
         <div id="vitalAnalysis"></div>
       </div>
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/jsqr/dist/jsQR.js"></script>
+    <script src="./src/functions/uploadQRCode.js"></script>
     <script src="./src/functions/showDataBox.js"></script>
     <script src="./src/functions/exitDataBox.js"></script>
   </body>

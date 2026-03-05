@@ -9,11 +9,9 @@ const contentBox = document.getElementById("contentBox");
 
 scanButton.addEventListener("click", () => {
   actionButtons.classList.add("hidden");
-  buttons;
 });
 
 uploadButton.addEventListener("click", () => {
-  qrImageInput.click();
   actionButtons.classList.add("hidden");
 });
 function activateUI() {

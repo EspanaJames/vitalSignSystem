@@ -80,7 +80,7 @@ body {
   transform: scale(1.1);
 }
 #mainContent > div#shortDescription > h3 {
-  font-size: 12px;
+  font-size: 1rem;
   color: #ebebeb;
   font-weight: 300;
   letter-spacing: 1px;
@@ -91,7 +91,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 96px;
-  width: 658px;
+  width: 600px;
 }
 #mainContent > div#callToAction > h1 {
   font-size: 64px;
@@ -103,12 +103,12 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 72px;
-  max-width: 620px;
+  max-width: 450px;
   padding-left: 10px;
   padding-right: 10px;
 }
 #mainContent > div#projectDescription > h4 {
-  font-size: 16px;
+  font-size: 1.4rem;
   color: #02374d;
   text-align: center;
   font-weight: 200;
@@ -121,8 +121,8 @@ body {
   justify-content: space-between;
   padding-top: 10px;
   height: 56px;
-  width: 456px;
-  gap: 10px;
+  width: 400px;
+  gap: 15px;
 }
 #mainContent > div#actionButtons > button {
   display: flex;
@@ -147,8 +147,8 @@ body {
   transform: scale(1.05);
 }
 #mainContent > div#actionButtons > button > img {
-  height: 24px;
-  width: 24px;
+  height: 50%;
+  width: auto;
 }
 #dateAndTime {
   display: flex;

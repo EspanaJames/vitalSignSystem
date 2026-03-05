@@ -1,72 +1,60 @@
-"use strict";
-import { uploadBtn, qrImageInput, contentBox, apiEndpoint } from "./main.js";
+const uploadButton = document.getElementById("uploadButton");
+const qrInput = document.getElementById("qrImageInput");
+const canvas = document.getElementById("qrCanvas");
+const ctx = canvas.getContext("2d");
 
-uploadBtn.addEventListener("click", () => {
-  qrImageInput.click();
+uploadButton.addEventListener("click", () => {
+  qrInput.click();
 });
 
-qrImageInput.addEventListener("change", async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
+qrInput.addEventListener("change", function () {
+  const file = this.files[0];
 
   const img = new Image();
-  const url = URL.createObjectURL(file);
+  img.src = URL.createObjectURL(file);
 
-  img.onload = async () => {
-    const canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
+  img.onload = function () {
+    const size = 600;
+    canvas.width = size;
+    canvas.height = size;
 
-    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    const code = jsQR(imageData.data, imageData.width, imageData.height);
-    URL.revokeObjectURL(url);
+    ctx.drawImage(img, 0, 0, size, size);
 
-    if (!code) {
-      alert("No QR code found in image.");
-      return;
-    }
+    const imageData = ctx.getImageData(0, 0, size, size);
 
-    let vitals;
-    try {
-      const data = JSON.parse(code.data);
-      vitals = {
-        bloodPressure: data.bp,
-        heartRate: data.hr,
-        bloodOxygen: data.spo2,
-        temperature: data.temp,
-      };
-    } catch {
-      const text = code.data;
-      vitals = {
-        bloodPressure: text.match(/Blood Pressure\s*=\s*([\d/]+)/i)?.[1],
-        heartRate: text.match(/Heart Rate\s*=\s*(\d+)/i)?.[1],
-        bloodOxygen: text.match(/Oxygen Saturation\s*=\s*(\d+)/i)?.[1],
-        temperature: text.match(/Body Temperature\s*=\s*([\d.]+)/i)?.[1],
-      };
-    }
+    const code = jsQR(imageData.data, size, size);
 
-    if (!vitals || Object.values(vitals).some((v) => !v)) {
-      alert("QR found but data format is invalid.");
-      return;
-    }
+    if (code) {
+      const text = String.fromCharCode(...code.binaryData);
 
-    contentBox.style.display = "block";
+      const parts = text.split(";");
 
-    try {
-      const response = await fetch(apiEndpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(vitals),
+      parts.forEach((part) => {
+        const p = part.trim();
+        if (!p) return;
+
+        const eq = p.indexOf("=");
+        if (eq === -1) return;
+
+        const key = p.substring(0, eq).trim().toLowerCase();
+        const value = p.substring(eq + 1).trim();
+
+        if (key.includes("heart rate")) {
+          document.getElementById("heartRateValue").innerText = value;
+        }
+
+        if (key.includes("oxygen")) {
+          document.getElementById("bloodOxygenValue").innerText = value;
+        }
+
+        if (key.includes("blood pressure")) {
+          document.getElementById("bloodPressureValue").innerText = value;
+        }
+
+        if (key.includes("temperature")) {
+          document.getElementById("temperatureValue").innerText = value;
+        }
       });
-      const data = await response.json();
-      console.log("AI result:", data);
-      // You can display AI results in another element here
-    } catch (err) {
-      console.error("AI analysis error:", err);
     }
   };
-
-  img.src = url;
 });
