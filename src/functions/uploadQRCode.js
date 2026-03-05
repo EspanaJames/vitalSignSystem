@@ -6,10 +6,8 @@ const canvas = document.getElementById("qrCanvas");
 const ctx = canvas.getContext("2d");
 const contentBox = document.getElementById("contentBox");
 
-// Trigger file selection
 uploadButton.addEventListener("click", () => qrInput.click());
 
-// Handle file selection and QR analysis
 qrInput.addEventListener("change", function () {
   const file = this.files[0];
   if (!file) return;
@@ -18,23 +16,19 @@ qrInput.addEventListener("change", function () {
   img.src = URL.createObjectURL(file);
 
   img.onload = function () {
-    // Draw the image on canvas
     canvas.width = img.width;
     canvas.height = img.height;
     ctx.drawImage(img, 0, 0, img.width, img.height);
 
     const imageData = ctx.getImageData(0, 0, img.width, img.height);
 
-    // Scan QR code
     const code = jsQR(imageData.data, img.width, img.height);
 
     if (code) {
-      // Get text from QR (handle byte-mode)
       const qrText = code.data || String.fromCharCode(...code.binaryData);
       console.log("QR detected:", qrText);
 
-      // Parse key=value or semicolon-delimited data
-      const parts = qrText.split(/[,;]/); // split by comma or semicolon
+      const parts = qrText.split(/[,;]/);
       parts.forEach((part) => {
         const p = part.trim();
         if (!p) return;

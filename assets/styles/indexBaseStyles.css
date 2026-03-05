@@ -218,7 +218,6 @@ body {
 .hidden {
   display: none !important;
 }
-/* Base styles already set above */
 
 /* Tablet view */
 @media (max-width: 1024px) {
