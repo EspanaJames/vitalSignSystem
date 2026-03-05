@@ -50,7 +50,6 @@
   border-radius: 10px;
   border: 2px solid #00eaff;
   margin-bottom: 10px;
-  transform: scaleX(-1);
 }
 #vitalsHeader {
   display: flex;
