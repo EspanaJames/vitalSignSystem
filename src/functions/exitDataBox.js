@@ -17,6 +17,8 @@ export function exitDataBox() {
   document.getElementById("bloodOxygenValue").innerText = "0%";
   document.getElementById("bloodPressureValue").innerText = "0 mm/Hg";
   document.getElementById("temperatureValue").innerText = "0°C";
+
+  document.getElementById("vitalAnalysis").innerHTML = "";
 }
 
 export function initExitButton() {

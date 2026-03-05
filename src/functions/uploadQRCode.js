@@ -45,6 +45,7 @@ export function initFileUploader() {
             document.getElementById("temperatureValue").innerText = value;
         });
 
+        video.style.display = "none";
         showDataBox();
         analyzeVitals();
       } catch (err) {
