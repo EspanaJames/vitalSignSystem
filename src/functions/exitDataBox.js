@@ -1,10 +1,12 @@
 "use strict";
-const exitBtn = document.getElementById("exitButton");
-const actionButtons = document.getElementById("actionButtons");
-const qrImageInput = document.getElementById("qrImageInput");
+import {
+  actionButtons,
+  contentBox,
+  qrImageInput,
+  exitBtn,
+} from "./variables.js";
 
-function exitDataBox() {
-  const contentBox = document.getElementById("contentBox");
+export function exitDataBox() {
   contentBox.classList.remove("show");
 
   actionButtons.classList.remove("hidden");
@@ -17,4 +19,6 @@ function exitDataBox() {
   document.getElementById("temperatureValue").innerText = "0°C";
 }
 
-exitBtn.addEventListener("click", exitDataBox);
+export function initExitButton() {
+  exitBtn.addEventListener("click", exitDataBox);
+}
